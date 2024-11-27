@@ -16,7 +16,7 @@ namespace Snake_Suhanova
         private static int localPort = 5001;
         public static int MaxSpeed = 15;
         static void Main(string[] args)
-        {
+        {м
         }
 
         private static void Send()
