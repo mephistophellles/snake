@@ -252,7 +252,7 @@ namespace Snake_Suhanova
                     Leaders=new List<Leaders>();
 
 
-                    
+                    .
             }
             else
                 Leaders = new List<Leaders>();
