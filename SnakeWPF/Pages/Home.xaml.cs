@@ -14,18 +14,14 @@ namespace SnakeWPF.Pages
 
         private void StartGame(object sender, RoutedEventArgs e)
         {
-            if (MainWindow.mainWindow.receivingUdpClient != null) // Если есть соединение 
-                MainWindow.mainWindow.receivingUdpClient.Close(); // Закрываем
-            if (MainWindow.mainWindow.tRec != null) // Если есть поток
-                MainWindow.mainWindow.tRec.Abort(); // Отлючаем
-            IPAddress UserIPAdress;
-            if (!IPAddress.TryParse(ip.Text, out UserIPAdress))
+            MainWindow.mainWindow.receivingUdpClient?.Close(); // Закрываем
+            MainWindow.mainWindow.tRec?.Abort(); // Отлючаем
+            if (!IPAddress.TryParse(ip.Text, out IPAddress UserIPAdress))
             {
                 MessageBox.Show("Please use the IP address in the format X.X.X.X");
                 return;
             }
-            int UserPort;
-            if (!int.TryParse(port.Text, out UserPort))
+            if (!int.TryParse(port.Text, out int UserPort))
             {
                 MessageBox.Show("Please use th port as a number.");
                 return;

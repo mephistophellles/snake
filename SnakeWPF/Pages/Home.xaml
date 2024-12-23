@@ -9,78 +9,138 @@
       Title="Home">
 
     <Grid>
+        <!-- Основной фон -->
         <Grid.Background>
             <ImageBrush ImageSource="/SnakeWPF;component/Image/background.jpg" />
         </Grid.Background>
-        <Grid>
-            <Grid Width="320" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/SnakeWPF;component/Image/background_2.png" />
-                </Grid.Background>
+
+        <!-- Центральный контейнер -->
+        <Border
+        Width="320"
+        Height="240"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Background="#AA000000"
+        CornerRadius="15"
+        BorderBrush="White"
+        BorderThickness="2">
+            <Grid Margin="10">
+                <!-- Заголовок -->
+                <Label
+                Content="Connection Settings"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                FontFamily="Forte"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Margin="0,0,0,10" />
+
+                <!-- Сетка для полей -->
+                <Grid Margin="0,40,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- IP Address -->
+                    <Label
+                    Content="Your IP:"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    FontFamily="Forte" />
+                    <TextBox
+                    x:Name="ip"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Height="25"
+                    Text="127.0.0.1"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    FontFamily="Forte"
+                    Margin="5,0,0,5" />
+
+                    <!-- Port -->
+                    <Label
+                    Content="Port:"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    FontFamily="Forte" />
+                    <TextBox
+                    x:Name="port"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Height="25"
+                    Text="5000"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    FontFamily="Forte"
+                    Margin="5,0,0,5" />
+
+                    <!-- Name -->
+                    <Label
+                    Content="Your Name:"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    FontFamily="Forte" />
+                    <TextBox
+                    x:Name="name"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Height="25"
+                    Text="Ksenich"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    FontFamily="Forte"
+                    Margin="5,0,0,5" />
+
+                    <!-- Button -->
+                    <Button
+                    Click="StartGame"
+                    Content="Start Game"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Height="30"
+                    FontFamily="Forte"
+                    FontSize="14"
+                    Margin="0,30,0,0" >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="20">
+                                    <ContentPresenter
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF007ACC" Offset="0" />
+                                <GradientStop Color="#FF005BA1" Offset="1" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.BorderBrush>Black</Button.BorderBrush>
+                        <Button.BorderThickness>1</Button.BorderThickness>
+                        <Button.Foreground>White</Button.Foreground>
+                    </Button>
+                </Grid>
             </Grid>
-            <Label
-            Content="Your IP address"
-            HorizontalAlignment="Left"
-            Margin="42,37,0,0"
-            VerticalAlignment="Top"
-            Foreground="Black"
-            FontFamily="Forte" />
-            <Label
-            Content="Port:"
-            HorizontalAlignment="Left"
-            Margin="202,37,0,0"
-            VerticalAlignment="Top"
-            Foreground="Black"
-            Width="74"
-            FontFamily="Forte" />
-            <Label
-            Content="Your Name:"
-            HorizontalAlignment="Left"
-            Margin="42,92,0,0"
-            VerticalAlignment="Top"
-            Foreground="Black"
-            FontFamily="Forte" />
-            <TextBox x:Name="ip"
-            HorizontalAlignment="Left"
-            Height="25"
-            Margin="42,62,0,0"
-            TextWrapping="Wrap"
-            Text="192.168.0.107"
-            VerticalAlignment="Top"
-            Width="155"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
-            FontFamily="Forte" />
-            <TextBox x:Name="port"
-            HorizontalAlignment="Left"
-            Height="25"
-            Margin="202,62,0,0"
-            TextWrapping="Wrap"
-            Text="5000"
-            VerticalAlignment="Top"
-            Width="74"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
-            FontFamily="Forte" />
-            <TextBox x:Name="name"
-            HorizontalAlignment="Left"
-            Height="25"
-            Margin="42,118,0,0"
-            TextWrapping="Wrap"
-            Text="Alexashchka"
-            VerticalAlignment="Top"
-            Width="234"
-            VerticalContentAlignment="Center"
-            HorizontalContentAlignment="Center"
-            FontFamily="Forte" />
-            <Button Click="StartGame"
-            Content="Game"
-            HorizontalAlignment="Left"
-            Margin="42,148,0,0"
-            VerticalAlignment="Top"
-            Width="234"
-            Height="25"
-            FontFamily="Forte" />
-        </Grid>
+        </Border>
     </Grid>
 </Page>

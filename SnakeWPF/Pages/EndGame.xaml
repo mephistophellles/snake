@@ -8,52 +8,143 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="EndGame">
 
+    
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/SnakeWPF;component/Image/background.jpg" />
         </Grid.Background>
-        <Grid>
-            <Grid Width="320"
+        <Border
+            Width="320"
             Height="200"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center">
-                <Grid.Background>
-                    <ImageBrush ImageSource="/SnakeWPF;component/Image/background_2.png" />
-                </Grid.Background>
+            VerticalAlignment="Center"
+            CornerRadius="20">  
+            
+            <Border.Effect>
+                <DropShadowEffect
+                Color="Black"
+                Opacity="0.6"
+                ShadowDepth="5"
+                BlurRadius="10" />  
+            </Border.Effect>
+            <Border.Background>
+                <ImageBrush ImageSource="/SnakeWPF;component/Image/background_2.jpg" Opacity="0.8" />
+            </Border.Background>
+
+            <Grid>
+                <!-- Name Label -->
                 <Label
                 x:Name="name"
-                Content="Alexashchka"
-                Margin="45,18,45,0"
+                FontWeight="Bold"
+                FontSize="25"
+                Content="Ksenich"
+                Margin="0,18,0,0"
                 VerticalAlignment="Top"
                 HorizontalContentAlignment="Center"
                 FontFamily="Forte"
-                FontSize="16" />
+                >
+                    <Label.Effect>
+                        <DropShadowEffect
+                            Color="Black"
+                            Opacity="0.8"
+                            ShadowDepth="4"
+                            BlurRadius="10" />
+                    </Label.Effect>
+                    <Label.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="DarkSeaGreen" Offset="0" />
+                            <GradientStop Color="GreenYellow" Offset="0.5" />
+                            <GradientStop Color="Green" Offset="1" />
+                        </LinearGradientBrush>
+                    </Label.Foreground>
+                </Label>
+                
+
+                <!-- Glasses Label -->
                 <Label
-                x:Name="glasses"
-                Content="90 glasses"
-                Margin="45,50,45,0"
-                VerticalAlignment="Top"
-                HorizontalContentAlignment="Center"
-                FontFamily="Forte" />
-                <Button Click="OpenHome"
-                Content="Main Menu"
-                HorizontalAlignment="Left"
-                Margin="45,0,0,10"
-                VerticalAlignment="Bottom"
-                Width="230"
-                Height="25"
-                FontFamily="Forte" />
-                <Label 
-                x:Name="top"
-                Content="999"
-                Margin="45,76,45,0"
-                VerticalAlignment="Top"
-                HorizontalContentAlignment="Center"
-                FontFamily="Forte"
-                Height="84"
-                VerticalContentAlignment="Center"
-                FontSize="48" />
+            x:Name="glasses"
+            Content="90 glasses"
+            Margin="0,50,0,0"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+                    FontWeight="DemiBold"
+                    FontSize="15"
+            FontFamily="Forte">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            Color="Black"
+                            Opacity="0.6"
+                            ShadowDepth="4"
+                            BlurRadius="10" />
+                    </Label.Effect>
+                    <Label.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="LawnGreen" Offset="0" />
+                            <GradientStop Color="LimeGreen" Offset="0.5" />
+                            <GradientStop Color="LawnGreen" Offset="1" />
+                        </LinearGradientBrush>
+                    </Label.Foreground>
+                </Label>
+
+                <!-- Top Score Label -->
+                <Label
+            x:Name="top"
+            Content="999"
+            Margin="0,90,0,0"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            FontFamily="Forte"
+            FontSize="48"
+            FontWeight="Bold"
+            Foreground="GreenYellow"
+            VerticalContentAlignment="Center">
+                    <Label.Effect>
+                        <DropShadowEffect
+                            Color="Black"
+                            Opacity="0.8"
+                            ShadowDepth="4"
+                            BlurRadius="10" />  
+                    </Label.Effect>
+                </Label>
+
+                <!-- Main Menu Button -->
+                <Button
+                    x:Name="mainMenuButton"
+                    Click="OpenHome"
+                    Content="Main Menu"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,10"
+                    VerticalAlignment="Bottom"
+                    Width="230"
+                    Height="25"
+                    FontFamily="Forte"
+                    FontSize="14"
+                    Padding="5,2">  
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="20">
+                                <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FF007ACC" Offset="0" />
+                            <GradientStop Color="#FF005BA1" Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <Button.BorderBrush>Black</Button.BorderBrush>
+                    <Button.BorderThickness>1</Button.BorderThickness>
+                    <Button.Foreground>White</Button.Foreground>
+                </Button>
             </Grid>
-        </Grid>
+        </Border>
     </Grid>
 </Page>
+    

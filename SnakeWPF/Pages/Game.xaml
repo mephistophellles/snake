@@ -10,9 +10,9 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="SnakeWPF;component/Image/background_3.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="/SnakeWPF;component/Image/background_3.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
-        <Canvas x:Name="canvas">
+        <Canvas x:Name="Canvas">
             
         </Canvas>
     </Grid>
