@@ -11,6 +11,7 @@ namespace SnakeWPF.Pages
         {
             InitializeComponent();
         }
+
         private void StartGame(object sender, RoutedEventArgs e)
         {
             if (MainWindow.mainWindow.receivingUdpClient != null) // Если есть соединение 
@@ -29,6 +30,7 @@ namespace SnakeWPF.Pages
                 MessageBox.Show("Please use th port as a number.");
                 return;
             }
+
             MainWindow.mainWindow.StartReceiver();
             MainWindow.mainWindow.ViewModelUserSettings.IPAdress = ip.Text;
             MainWindow.mainWindow.ViewModelUserSettings.Port = port.Text;
