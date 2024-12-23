@@ -1,6 +1,7 @@
 ﻿using Common;
 using Newtonsoft.Json;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
 
 namespace SnakeWPF
@@ -29,6 +31,8 @@ namespace SnakeWPF
         public MainWindow()
         {
             InitializeComponent();
+            mainWindow = this;
+            OpenPage(Home);
         }
         public void StartReceiver()
         {
@@ -109,6 +113,29 @@ namespace SnakeWPF
             {
                 sender.Close();
             }
+        }
+
+        private void EventKeyUp(object sender, KeyEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ViewModelUserSettings.IPAdress) &&
+                !string.IsNullOrEmpty(ViewModelUserSettings.Port) &&
+                ViewModelGames != null && !ViewModelGames.SnakesPlayers.GameOver)
+            {
+                if (e.Key == Key.Up)
+                    Send($"Up|{JsonConvert.SerializeObject(ViewModelUserSettings)}");
+                else if (e.Key == Key.Down)
+                    Send($"Down|{JsonConvert.SerializeObject(ViewModelUserSettings)}");
+                else if (e.Key == Key.Left)
+                    Send($"Left|{JsonConvert.SerializeObject(ViewModelUserSettings)}");
+                else if (e.Key == Key.Right)
+                    Send($"Right|{JsonConvert.SerializeObject(ViewModelUserSettings)}");
+            }
+        }
+
+        private void QuitApplication(object sender, CancelEventArgs e)
+        {
+            receivingUdpClient.Close();
+            tRec.Abort();
         }
     }
 }
