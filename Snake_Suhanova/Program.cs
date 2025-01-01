@@ -25,13 +25,10 @@ namespace Snake_Suhanova
             foreach (var User in remoteIPAddress)
             {
                 UdpClient sender = new UdpClient();
-                IPEndPoint endPoint = new IPEndPoint(
-                    IPAddress.Parse(User.IPAdress),
-                    int.Parse(User.Port));
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(User.IPAdress), int.Parse(User.Port));
                 try
                 {
                     byte[] bytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(viewModelGames.Find(x => x.IdSnake == User.IdSnake)));
-
                     sender.Send(bytes, bytes.Length, endPoint);
 
                     bytes = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(viewModelGames.FindAll(x => x.IdSnake != User.IdSnake)));
@@ -122,7 +119,8 @@ namespace Snake_Suhanova
                 },
                 direction = Snakes.Direction.Start
             };
-            viewModelGamesPlayer.Points = new Snakes.Point(new Random().Next(10, 783), new Random().Next(10, 410));
+            viewModelGamesPlayer.Points = ApplePoint;
+
             viewModelGames.Add(viewModelGamesPlayer);
             return viewModelGames.FindIndex(x => x == viewModelGamesPlayer);
         }
@@ -184,8 +182,9 @@ namespace Snake_Suhanova
                                              Snake.Points[0].Y <= viewModelGames.Find(x => x.IdSnake == User.IdSnake).Points.Y + 15)
                                            )
                     {
-                        viewModelGames.Find(x => x.IdSnake == User.IdSnake).Points = new Snakes.Point(new Random().Next(10, 783),
-                                                                                                      new Random().Next(10, 410));
+                        viewModelGames.ForEach(x => x.Points = ApplePoint);
+                        ApplePoint = new Snakes.Point(new Random().Next(10, 783), new Random().Next(10, 410));
+
                         Snake.Points.Add(new Snakes.Point()
                         {
                             X = Snake.Points[Snake.Points.Count - 1].X,
@@ -201,6 +200,8 @@ namespace Snake_Suhanova
 
                         Leaders = Leaders.OrderByDescending(x => x.Points).ThenBy(x => x.Name).ToList();
                         viewModelGames.Find(x => x.IdSnake == User.IdSnake).Top = Leaders.FindIndex(x => x.Points == Snake.Points.Count - 3 && x.Name == User.Name) + 1;
+
+                        //Send(); 
                     }
                     if (Snake.GameOver)
                     {
@@ -213,6 +214,7 @@ namespace Snake_Suhanova
                         SaveLeaders();
                     }
                 }
+
                 Send();
             }
         }

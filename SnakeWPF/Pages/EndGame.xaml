@@ -63,7 +63,7 @@
                 <!-- Glasses Label -->
                 <Label
             x:Name="glasses"
-            Content="90 glasses"
+            Content="90"
             Margin="0,50,0,0"
             VerticalAlignment="Top"
             HorizontalContentAlignment="Center"

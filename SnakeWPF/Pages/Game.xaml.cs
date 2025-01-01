@@ -9,9 +9,6 @@ using System.Windows.Shapes;
 
 namespace SnakeWPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Game.xaml
-    /// </summary>
     public partial class Game : Page
     {
         public int StepCadr = 0;
@@ -163,20 +160,40 @@ namespace SnakeWPF.Pages
                         Brush Color;
 
                         if (iPoint == 0)
-                            Color = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 127, 14));
+                        {
+                            Image headImage = new Image()
+                            {
+                                Width = 25,
+                                Height = 25,
+                                Margin = new Thickness(SnakePoint.X - 10, SnakePoint.Y - 10, 0, 0),
+                                Source = new BitmapImage(new Uri("pack://application:,,,/SnakeWPF;component/Image/snake-face.png")),
+                                Stretch = Stretch.Uniform
+                            };
+
+                            headImage.Effect = new DropShadowEffect
+                            {
+                                Color = Colors.Black,
+                                BlurRadius = 5,
+                                ShadowDepth = 3,
+                                Opacity = 0.4
+                            };
+
+                            Canvas.Children.Add(headImage);
+                        }
                         else
+                        {
                             Color = new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 198, 19));
 
-                        Ellipse ellipse = new Ellipse()
-                        {
-                            Width = 20,
-                            Height = 20,
-                            Margin = new Thickness(SnakePoint.X - 10, SnakePoint.Y - 10, 0, 0),
-                            Fill = Color,
-                            Stroke = Brushes.Black
-                        };
-                        Canvas.Children.Add(ellipse);
-
+                            Ellipse ellipse = new Ellipse()
+                            {
+                                Width = 20,
+                                Height = 20,
+                                Margin = new Thickness(SnakePoint.X - 10, SnakePoint.Y - 10, 0, 0),
+                                Fill = Color,
+                                Stroke = Brushes.Black
+                            };
+                            Canvas.Children.Add(ellipse);
+                        }
                     }
                 }
             });

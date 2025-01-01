@@ -28,6 +28,7 @@ namespace SnakeWPF
         public UdpClient receivingUdpClient;
         public Pages.Home Home = new Pages.Home();
         public Pages.Game Game = new Pages.Game();
+        public static Snakes.Point ApplePoint = new Snakes.Point();
 
         public MainWindow()
         {
@@ -80,6 +81,9 @@ namespace SnakeWPF
                         receiveBytes = receivingUdpClient.Receive(ref RemoteIpEndPoint);
                         returnData = Encoding.UTF8.GetString(receiveBytes);
                         ViewModelGamesList = JsonConvert.DeserializeObject<List<ViewModelGames>>(returnData.ToString());
+
+                        //var gameState = JsonConvert.DeserializeObject<dynamic>(returnData);
+                        //ApplePoint = new Snakes.Point((int)gameState.Apple.X, (int)gameState.Apple.Y);
 
                         Game.CreateUI();
                     }
